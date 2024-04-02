@@ -1,0 +1,38 @@
+﻿@page "/"
+@using Models.Product
+@using Services.IService
+@inject IProductService productService
+
+<PageTitle>Home</PageTitle>
+
+<h1 class="text-center">Products</h1>
+
+<div class="row">
+    @foreach (var product in Products)
+    {
+        <div class="col-3 mt-3">
+            <div class="card">
+                <div class="card-header">
+                    <img src="@product.UrlImage" class="img-fluid" />
+                </div>
+                <div class="card-body">
+                    <h4>@product.Name</h4>
+                    <p>@product.Description</p>
+                </div>
+                <div class="card-footer">
+                    <h4 class="text-end">$<b>@product.Price</b></h4>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    private IEnumerable<ProductResponseModel> Products { get; set; } = new List<ProductResponseModel>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Products = await productService.GetProducts();
+    }
+
+}

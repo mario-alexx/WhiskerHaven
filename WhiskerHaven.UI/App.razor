@@ -1,0 +1,21 @@
+﻿<Router AppAssembly="@typeof(App).Assembly">
+
+    <Found Context="routeData">
+        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(MainLayout)">
+            <Authorizing>
+                <p>Please wait while we authorize the user.</p>
+            </Authorizing>
+            <NotAuthorized>
+                <WhiskerHaven.UI.Pages.RedirectToAccess></WhiskerHaven.UI.Pages.RedirectToAccess>
+            </NotAuthorized>
+        </AuthorizeRouteView>
+    </Found>
+
+    <NotFound>
+        <CascadingAuthenticationState>
+            <LayoutView Layout="@typeof(MainLayout)">
+                <p>Error, nothing found at this address</p>
+            </LayoutView>
+        </CascadingAuthenticationState>
+    </NotFound>
+</Router>

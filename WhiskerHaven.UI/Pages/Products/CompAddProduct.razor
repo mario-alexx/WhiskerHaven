@@ -1,0 +1,123 @@
+﻿@page "/add-product"
+@attribute [Authorize]
+
+<h1 class="text-center">Add Product</h1>
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-7">
+                <h4 class="card-title text-dark">New Product</h4>
+            </div>
+
+        </div>
+    </div>
+    <div class="card-body">
+        <EditForm Model="AddProduct" OnValidSubmit="@( () => HandlerOnAddProduct())">
+            <DataAnnotationsValidator />
+            <div class="container">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Name:</label>
+                        </div>
+                        <div class="col-6">
+                            <InputText @bind-Value="AddProduct.Name" class="form-control" placeholder="Enter the name" />
+                            <ValidationMessage For="() => AddProduct.Name" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Description:</label>
+                        </div>
+                        <div class="col-6">
+                            <InputText @bind-Value="AddProduct.Description" class="form-control" placeholder="Enter the description" />
+                            <ValidationMessage For="() => AddProduct.Description" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Stock:</label>
+                        </div>
+                        <div class="col-6">
+                            <InputNumber @bind-Value="AddProduct.Stock" class="form-control" placeholder="Enter the stock" />
+                            <ValidationMessage For="() => AddProduct.Stock" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Price:</label>
+                        </div>
+                        <div class="col-6">
+                            <InputNumber @bind-Value="AddProduct.Price" class="form-control" placeholder="Enter the price" />
+                            <ValidationMessage For="() => AddProduct.Price" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <label>Category:</label>
+                        </div>
+                        <div class="col-6">
+                            <InputSelect @bind-Value="selectedCategory.Id" class="form-control">
+                                <option>Select</option>
+                                @foreach (var category in dropDownCategories)
+                                {
+                                    <option value="@category.Id">@category.Name</option>
+                                }
+                            </InputSelect>
+                            <ValidationMessage For="() => AddProduct.CategoryId" />
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-6">
+                            <h4>Product Image</h4>
+                            <InputFile OnChange="@HandlerOnUploadFile" />
+                            <br />
+                            @if (ProductImage != null)
+                            {
+                                <div>
+                                    <img src="@ProductImage" style="width:300px" />
+                                </div>
+                            }
+                            <ValidationMessage For="() => AddProduct.UrlImage" />
+                            
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-2">
+                            <button type="submit" class="btn btn-success"><i class="bi bi-gear-fill">&nbsp; Save</i></button>
+                        </div>
+                        <div class="col-6">
+                            <NavLink href="products" class="btn btn-secondary"><i class="bi bi-arrow-left-circle-fill"></i>&nbsp; Back</NavLink>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </EditForm>
+    </div>
+</div>

@@ -1,0 +1,19 @@
+﻿@page "/logout"
+@using Microsoft.AspNetCore.Authorization
+@using WhiskerHaven.UI.Services.IService
+@attribute [Authorize]
+
+@code {
+    [Inject]
+    public IAuthenticationService authenticationService { get; set; }
+    [Inject]
+    public NavigationManager navigationManager { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await authenticationService.Logout();
+        navigationManager.NavigateTo("/");
+    }
+
+}

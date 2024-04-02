@@ -1,0 +1,65 @@
+﻿@page "/products"
+@attribute [Authorize]
+
+<h1 class="text-center">List Products</h1>
+
+<div class="card">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-7">
+                <h4 class="card-title text-dark">List Products</h4>
+            </div>
+            <div class="col-3 offset-2">
+                <NavLink href="add-product" class="btn btn-primary"><i class="bi bi-plus-circle-plus"></i>&nbsp; New Product</NavLink>
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Stock</th>
+                    <th>Price</th>
+                    <th>Category</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if(Products.Count() > 0)
+                {
+                    @foreach (var product in Products)
+                    {
+                        <tr>
+                            <td class="col-1">@product.Id</td>
+                            <td>@product.Name</td>
+                            <td>@product.Description</td>
+                            <td>@product.Stock</td>
+                            <td>$ @product.Price</td>
+                            <td>@product.Category.Name</td>
+                            <td><img src="@product.UrlImage" class="img-fluid" width="100px"></td>
+                            <td class="col-2">
+                                <NavLink href="@($"edit-product/{product.Id}")" class="btn btn-success"><i class="bi bi-gear-fill"></i>&nbsp; Edit</NavLink>
+                                <button class="btn btn-danger" @onclick="() => HandlerOnDelete(product.Id)"><i class="bi bi-trash-fill"></i>&nbsp; Delete</button>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5">Loading...</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<ConfirmDelete ProcessComponentFather="Process" ChangeConfirm="ClickConfirmDelete" />
+
+
+

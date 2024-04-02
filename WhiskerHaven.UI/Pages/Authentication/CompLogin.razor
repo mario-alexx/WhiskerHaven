@@ -1,0 +1,51 @@
+﻿@page "/signin"
+
+<div class="py-4">
+    <div class=" row form-group ">
+        <div class="col-6 offset-3 ">
+            <div class="card border">
+                <div class="card-body px-lg-5 pt-4">
+                    <h3 class="col-12 text-success text-center py-2">
+                        <strong>Login</strong>
+                    </h3>
+
+                    <EditForm Model="userAuth" OnValidSubmit="UserAccess">
+                        <DataAnnotationsValidator />
+
+                        @if (ShowErrorsAuthentication)
+                        {
+                            <p class="text-center text-danger">@Errors</p>
+                        }
+
+                        <div class="form-row py-2">
+                            <InputText @bind-Value="userAuth.Email" id="email" placeholder="Enter the email" class="form-control mb-2" />
+                            <ValidationMessage For="(()=>userAuth.Email)" />
+                        </div>
+
+                        <div class="form-row py-2">
+                            <InputText @bind-Value="userAuth.Password" type="password" placeholder="Enter the password" id="password" class="form-control mb-2" />
+                            <ValidationMessage For="(()=>userAuth.Password)" />
+                        </div>
+
+                        <div class="row">
+                            <div class="col-6">
+                                @if (Process)
+                                {
+                                    <button type="submit" class="btn btn-success disabled" style="vertical-align:middle;line-height:30px;"><i class="fas fa-sign-in-alt"></i> Please wait...</button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-success" style="vertical-align:middle;line-height:30px;"><i class="fas fa-sign-in-alt"></i> Login</button>
+                                }
+                            </div>
+                            <div class="col-6">
+                                <a href="/signup" class="btn btn-primary text-white" style="vertical-align:middle;line-height:30px;"><i class="fas fa-user-plus"></i> Register</a>
+                            </div>
+                        </div>
+                    </EditForm>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
