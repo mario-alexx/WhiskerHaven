@@ -80,7 +80,7 @@ namespace WhiskerHaven.API.Controllers
         /// <param name="request">Data for creating the new product.</param>
         /// <returns>HTTP response indicating the result of the operation.</returns>
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(201, Type = typeof(CreateProductCommand))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -105,7 +105,6 @@ namespace WhiskerHaven.API.Controllers
             
             _logger.LogInformation($"New product added successfull: {request.Name}");
             return Ok(product);
-            //return CreatedAtRoute("Get", new { productId = product.Id }, product);
         }
 
         /// <summary>
@@ -115,7 +114,7 @@ namespace WhiskerHaven.API.Controllers
         /// <param name="request">Data for updating the product.</param>
         /// <returns>HTTP response indicating the result of the operation.</returns>
         [HttpPut("{productId}")]
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(201, Type = typeof(UpdateProductCommand))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -157,7 +156,7 @@ namespace WhiskerHaven.API.Controllers
         /// <param name="id">ID of the product to delete.</param>
         /// <returns>HTTP response indicating the result of the operation.</returns>
         [HttpDelete("{productId:int}")]
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

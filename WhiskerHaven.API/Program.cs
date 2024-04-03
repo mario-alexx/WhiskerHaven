@@ -60,12 +60,12 @@ builder.Services.AddAuthentication(x =>
         options.SaveToken = true;
         options.TokenValidationParameters = new TokenValidationParameters
         {
-            ValidateIssuer = false,
-            ValidateAudience = false,
+            ValidateIssuer = true,
+            ValidateAudience = true,
             ValidateLifetime = true,
             ValidateIssuerSigningKey = true,
-            //ValidIssuer = builder.Configuration["Jwt:Issuer"],
-            //ValidAudience = builder.Configuration["Jwt:Audience"],
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
             IssuerSigningKey = signinKey
         };
     });
@@ -109,21 +109,16 @@ builder.Services.AddSwaggerGen(
  *Usamos de ejemplo el dominio: http://localhost:3223, se debe cambiar por el correcto
   Se usa (*) para todos los dominios
 */
-//builder.Services.AddCors(p => p.AddPolicy("PolicyCors", build =>
-//{
-//    build.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
-//}));
-
 builder.Services.AddCors();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
+//if (app.Environment.IsDevelopment())
+//{
     app.UseSwagger();
     app.UseSwaggerUI();
-}
+//}
 
 app.UseHttpsRedirection();
 
@@ -136,8 +131,6 @@ app.UseStaticFiles(new StaticFileOptions()
 });
 
 //Soporte para Cors
-//app.UseCors("PolicyCors");
-
 app.UseCors(builder => builder
     .AllowAnyOrigin()
     .AllowAnyMethod()

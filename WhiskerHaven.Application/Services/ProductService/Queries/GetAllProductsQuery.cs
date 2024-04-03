@@ -49,7 +49,6 @@ namespace WhiskerHaven.Application.Services.ProductService.Queries
 
         public async Task<IEnumerable<ProductResponseModel>> Handle(GetAllProductsQuery request, CancellationToken cancellationToken)
         {
-            // var products = await _unitOfWork.ProductRepository.GetAllAsync();
             // Retrieve all products asynchronously
             var products = await _unitOfWork.ProductsRepository.GetAllProductsAsync();
 

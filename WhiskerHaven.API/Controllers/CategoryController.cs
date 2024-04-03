@@ -81,7 +81,7 @@ namespace WhiskerHaven.API.Controllers
         /// <param name="request">Data for creating the new category.</param>
         /// <returns>HTTP response indicating the result of the operation.</returns>
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(201, Type = typeof(CreateCategoryCommand))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -111,7 +111,7 @@ namespace WhiskerHaven.API.Controllers
         /// <param name="request">Data for updating the category.</param>
         /// <returns>HTTP response indicating the result of the operation.</returns>
         [HttpPut("{id}")]
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(201, Type = typeof(UpdateCategoryCommand))]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -153,7 +153,7 @@ namespace WhiskerHaven.API.Controllers
         /// <param name="id">ID of the category to delete.</param>
         /// <returns>HTTP response indicating the result of the operation.</returns>
         [HttpDelete("{id}")]
-        //[Authorize]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

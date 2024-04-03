@@ -23,10 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Application\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\WhiskerHaven.API\WhiskerHaven.API.csproj" />
     <ProjectReference Include="..\WhiskerHaven.Application\WhiskerHaven.Application.csproj" />
   </ItemGroup>

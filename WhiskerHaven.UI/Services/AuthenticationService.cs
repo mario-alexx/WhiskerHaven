@@ -35,8 +35,6 @@ namespace WhiskerHaven.UI.Services
 
             if (response.IsSuccessStatusCode)
             {
-                //var token = result["result"]["token"].Value<string>();
-                //var user = result["result"]["user"]["email"].Value<string>();
                 var token = result["token"].Value<string>();
                 var user = result["user"]["email"].Value<string>();
 

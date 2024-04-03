@@ -40,55 +40,6 @@ namespace WhiskerHaven.Application.Services.JwtService
             _userRepository = userRepository;
         }
 
-        //public async Task<UserLoginResponse> GenerateAsync(User user)
-        //{
-        //    string key = _configuration["Jwt:Key"];
-        //    string issuer = _configuration["Jwt:Issuer"];
-        //    string audience = _configuration["Jwt:Audience"];
-
-        //    var userEntity = await  _userRepository.GetByEmailAsync(user.Email);
-
-        //    var claims = new Claim[]
-        //    {
-        //        new(JwtRegisteredClaimNames.Name, userEntity.Name),
-        //        new(JwtRegisteredClaimNames.FamilyName, userEntity.LastName),
-        //        new(JwtRegisteredClaimNames.Email, user.Email)
-        //    };
-
-        //    //SecurityTokenDescriptor tokenDescriptor =
-
-        //    var signinCredentials = new SigningCredentials(
-        //                            new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key)),
-        //                            SecurityAlgorithms.HmacSha256);
-
-        //    var token = new JwtSecurityToken(
-        //        issuer,
-        //        audience,
-        //        claims,
-        //        null,
-        //        DateTime.UtcNow.AddHours(1),
-        //        signinCredentials);
-
-
-        //    // return usuarioLoginRespuestaDto;
-
-        //    var tokenValue = new JwtSecurityTokenHandler();
-
-
-        //    var usuerLoginResponse = new UserLoginResponse()
-        //    {
-        //        Token = tokenValue.WriteToken(token),
-        //        User = userEntity
-        //    };
-
-        //    return usuerLoginResponse;
-        //}
-
-        /// <summary>
-        /// Generates a JWT token for the specified user.
-        /// </summary>
-        /// <param name="user">The user for whom the JWT token is generated.</param>
-        /// <returns>The generated JWT token and user login response.</returns>
         public UserLoginResponse Generate(User user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -104,8 +55,8 @@ namespace WhiskerHaven.Application.Services.JwtService
                 Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
                                                             SecurityAlgorithms.HmacSha256Signature),
-                //Issuer = _configuration["Jwt:Issuer"],
-                //Audience = _configuration["Jwt:Audience"]
+                Issuer = _configuration["Jwt:Issuer"],
+                Audience = _configuration["Jwt:Audience"]
             };
 
             var token = tokenHandler.CreateToken(tokenDesc);

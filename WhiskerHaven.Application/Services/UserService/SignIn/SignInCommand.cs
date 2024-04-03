@@ -66,8 +66,6 @@ namespace WhiskerHaven.Application.Services.UserService.SignIn
             {
                 return null;
             }
-            // Map request to user object
-          //  var user = _mapper.Map<User>(request);
 
             // Generate JWT token
             var userLoginResponse = _jwtService.Generate(login);

@@ -18,7 +18,7 @@ namespace WhiskerHaven.UI.Services
         }
         public async Task<IEnumerable<CategoryModel>> GetCategories()
         {
-            HttpResponseMessage response = await _client.GetAsync($"{Initialize.UrlBaseApi}api/category");
+            HttpResponseMessage response = await _client.GetAsync($"{Initialize.UrlBaseApi}api/Category");
             string content = await response.Content.ReadAsStringAsync();
             IEnumerable<CategoryModel> categories = JsonConvert.DeserializeObject<IEnumerable<CategoryModel>>(content);
             return categories;
@@ -26,7 +26,7 @@ namespace WhiskerHaven.UI.Services
         }
         public async Task<CategoryModel> GetCategoryById(int categoryId)
         {
-            HttpResponseMessage response = await _client.GetAsync($"{Initialize.UrlBaseApi}api/category/{categoryId}");
+            HttpResponseMessage response = await _client.GetAsync($"{Initialize.UrlBaseApi}api/Category/{categoryId}");
             string content = await response.Content.ReadAsStringAsync();
 
             if (response.IsSuccessStatusCode)

@@ -62,7 +62,6 @@ namespace WhiskerHaven.Application.Services.ProductService.Commands.UpdateProduc
             // Map the properties from the command to the retrieved product
             var product = _mapper.Map(request, result);
 
-            //_unitOfWork.ProductRepository.Update(product);
             // Update the product in the repository
             _unitOfWork.ProductsRepository.Update(product);
 

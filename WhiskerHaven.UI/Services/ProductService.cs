@@ -60,8 +60,6 @@ namespace WhiskerHaven.UI.Services
                 throw new Exception(errorModel.ErrorMessage);
             }
         }
-        //public async Task<ProductResponseModel> UpdateProduct(int productId, ProductRequestModel product)
-        //{
         public async Task<ProductResponseModel> UpdateProduct(int productId, ProductResponseModel product)
         {
             string content = JsonConvert.SerializeObject(product);
